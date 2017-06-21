@@ -8,7 +8,7 @@ var player = {
   xspeed: 0,
   yspeed: 0,
   size: 10,
-  xfriction: .1,
+  xfriction: .2,
   g: globalGravity,
   jump: function() {
     this.yspeed = -6;

@@ -1,6 +1,6 @@
 var c = document.getElementById('canvas');
 var ctx = c.getContext('2d');
-var movespeed = 3
+var movespeed = 2.5
 var globalGravity = .2
 var player = {
   x: c.width / 2,
@@ -8,7 +8,7 @@ var player = {
   xspeed: 0,
   yspeed: 0,
   size: 10,
-  xfriction: .5,
+  xfriction: .25,
   g: globalGravity,
   jump: function() {
     this.yspeed = -6;

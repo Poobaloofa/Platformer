@@ -1,14 +1,15 @@
 var c = document.getElementById('canvas');
 var ctx = c.getContext('2d');
-var movespeed = 2.5
+var movespeed = 3
 var globalGravity = .2
+var scroll = 0
 var player = {
   x: c.width / 2,
   y: c.height / 2,
   xspeed: 0,
   yspeed: 0,
-  size: 10,
-  xfriction: .25,
+  size: 20,
+  xfriction: .1,
   g: globalGravity,
   jump: function() {
     this.yspeed = -6;
@@ -59,16 +60,24 @@ var player = {
 
     if (keys[37] == true) {
       this.xspeed = -movespeed
-    }
+    for (var i = 0; i < platforms.length; i++){
+    if(this.y<platforms[i].botSide&&this.y+this.size>platforms[i].topSide){
+    if(this.x-movespeed<platforms[i].rSide && this.x+movespeed>platforms[i].rSide){
+    this.xspeed = 0
+    }}}}
 
     if (keys[39] == true) {
-      this.xspeed = movespeed
-    }
+    this.xspeed = movespeed
+    for (var i = 0; i < platforms.length; i++){
+    if(this.y<platforms[i].botSide&&this.y+this.size>platforms[i].topSide){
+    if(this.x+this.size<platforms[i].lSide+movespeed && this.x+this.size>platforms[i].lSide-movespeed){
+    this.xspeed = 0
+    }}}}
 
     if (this.y + this.size < c.height) {
       this.yspeed += this.g;
     }
-    this.y += this.yspeed;
+		this.y += this.yspeed;
     this.x += this.xspeed;
     document.getElementById('x').innerHTML = 'X: ' + this.x;
     document.getElementById('y').innerHTML = 'Y: ' + this.y;
@@ -77,8 +86,9 @@ var player = {
     //collision/platforms
     for (var i = 0; i < platforms.length; i++) {
       if /* x is within x of plat */ (this.x < platforms[i].rSide && this.x + this.size > platforms[i].lSide) {
-        if (this.y < platforms[i].botSide && this.y + this.size > platforms[i].topSide) {
-          if (this.yspeed >= 0) {
+        if /* y is inside plat */ (this.y +this.yspeed < platforms[i].botSide && this.y + this.size +this.yspeed> platforms[i].topSide) {
+        console.log("what the actual frick")
+          if (this.yspeed > 0) {
             this.y = platforms[i].topSide - this.size
             this.yspeed = 0
           }
@@ -87,6 +97,21 @@ var player = {
             this.yspeed = 0
           }
         }
+      }
+      if /* y is inside plat y */ (this.y < platforms[i].botSide && this.y + this.size > platforms[i].topSide) {
+      console.log("heck this dude")
+      	if /* x will be within x of plat */ (this.x + this.xspeed < platforms[i].rSide && this.x + this.size + this.xspeed> platforms[i].lSide) {
+        console.log("y in y and x in x")
+					if (this.xspeed > 0) {
+            this.x = platforms[i].lSide - this.size 
+            this.xspeed = 0
+          }
+          if (this.xspeed < 0) {
+            this.x = platforms[i].rSide
+            this.xspeed = 0
+          }
+          //problem: pressing left/right keys clips into block and triggers vertical collision
+      	}
       }
     }
   }
@@ -111,9 +136,12 @@ function platform(startx, starty, width, height) {
 function addPlat(startx, starty, width, height) {
   platforms.push(new platform(startx, starty, width, height))
 }
-addPlat(40, 350, 160, 20)
-addPlat(340, 250, 110, 20)
-addPlat(100,130,60,20)
+addPlat(0, 450, 200, 50)
+addPlat(300,250, 200, 50)
+addPlat(300,250,50,150)
+addPlat(100,350,200,50)
+addPlat(50,150,150,50)
+addPlat(0,-1,c.width,1)
 
 setInterval(function() {
   ctx.clearRect(0, 0, c.width, c.height);

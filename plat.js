@@ -16,17 +16,13 @@ var player = {
   },
   onGround: function(){
   for(var i = 0; i < platforms.length; i++){
-  if(this.y+this.size == c.height || this.y+this.size == platforms[i].topSide){
+  if(this.y+this.size == platforms[i].topSide){
   return true
   }
   }
   },
   update: function() {
     //movement
-    if (this.y + this.size > c.height) {
-      this.yspeed = 0;
-      this.y = c.height - this.size;
-    }
 
     if (this.xspeed > 0 && this.onGround()) {
       this.xspeed -= this.xfriction
@@ -74,9 +70,7 @@ var player = {
     this.xspeed = 0
     }}}}
 
-    if (this.y + this.size < c.height) {
-      this.yspeed += this.g;
-    }
+    this.yspeed += this.g;
 		this.y += this.yspeed;
     this.x += this.xspeed;
     document.getElementById('x').innerHTML = 'X: ' + this.x;
@@ -136,15 +130,22 @@ function platform(startx, starty, width, height) {
 function addPlat(startx, starty, width, height) {
   platforms.push(new platform(startx, starty, width, height))
 }
-addPlat(0, 450, 200, 50)
+addPlat(0, 450, 450, 50)
 addPlat(300,250, 200, 50)
 addPlat(300,250,50,150)
 addPlat(100,350,200,50)
 addPlat(50,150,150,50)
 addPlat(0,-1,c.width,1)
 
+//drawing death sign
+var deathSign = new Image
+deathSign.src = "https://i.imgur.com/pogZi87.jpg"
+deathSign.x = 425
+deathSign.y = 425
+
 setInterval(function() {
   ctx.clearRect(0, 0, c.width, c.height);
+  ctx.drawImage(deathSign,375,375)
   player.update();
   for (var i = 0; i < platforms.length; i++) {
     if (platforms[i].rSide > 0 && platforms[i].lSide < c.width)

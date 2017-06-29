@@ -26,15 +26,15 @@ var player = {
     //movement
 
     if (this.xspeed > 0 && this.onGround()) {
-      this.xspeed -= this.xfriction
+      this.xspeed -= 2*this.xfriction
       this.xspeed = this.xspeed * 10
-      this.xspeed = Math.round(this.xspeed)
+      this.xspeed = Math.floor(this.xspeed)
       this.xspeed = this.xspeed / 10
     };
     if (this.xspeed < 0 && this.onGround()) {
       this.xspeed += this.xfriction
       this.xspeed = this.xspeed * 10
-      this.xspeed = Math.round(this.xspeed)
+      this.xspeed = Math.floor(this.xspeed)
       this.xspeed = this.xspeed / 10
     }
 
@@ -138,7 +138,7 @@ function addPlat(startx, starty, width, height) {
 
 //all mapping
 var img = new Image();
-img.src ='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAUCAIAAACVui2AAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QYdDioOvrLUQAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAx0lEQVRYw+WYSw6AIAxEO4b7X7kuNNEARSiUj7AVcF5oOwWizQaIiJmzpgKZM02EArqFb80Ajt1OeBlgXXCFq5x14A3MguhwM5xDfaLmi0HB1Jea+auXhIDo57EFuZ5ZEn8DM3NIODmzhJ3W/ABHCT+ZFSnnuWLPAuED65gXa7O8xuOK7ZlNpb0tRfP5Nzn82NJeVVpi7lNIxvhwT/U14VNU2MO/oGfrq0u5hi547eCsL71plVKrZ/sAYGTxba8frR4Adrv/0wnPXZAWm8hNPQAAAABJRU5ErkJggg==';
+img.src ='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+gAAAAUCAIAAACReYBMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QYdERsPGJIHKQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAEf0lEQVR42u2dwZbDIAhF7f9/9MxuzpzOJEVAfJj7lm2aEkPkimjGQAghhBBCCMnrNcb4+vqyHv167TLUbmRp8103yJvB9iPLbkTkvifeji1O1c6dlJ+71+tVf9hNu/38/Pfnv895dfzVT67OY7Hh/ivLP179qaC3oO7S7BgRIkb7wR3MMjbIX4NzwT1oTPzMK+5IgWvphyUpGjM2lwW1f67LcmR8KDvF4lOcHbfByO6WAQPsjgB3hAB3wH0J1NaAe9llrrY50c3ahSKRrmEKWPdm3H3sHiFmx2Piw3pHsh89lraDngC1I3QmuNebnm5epHvKysY17S7tedNdD8wZsWd779CiGf/1xkh+PSXvPmylO7nsDsE/FtYTPQFwR+hYcK+0fmn9fcqQIGihciS+mTqgiz+1j+g4jLRAsAOajez+cfwQ/2p2BqDec+xLelDNE1oQEBEiKHcC96FUkVwzP5iSMp9K4ym4yBW730zO+ib098aM1TMJwfPLVv8vNcwybowsS43k4y0Pte+0wVFEwd1psZkB4O5of8AdocPBfUvYXmeAfXVdTX+nE/Mc8xIbA0Dw3xPr+BctCaD6f4RrXdwbucwOyG+GtQV5dxGHabdmo8Bmd3RbdxVQO0KPAPexL6lT/79T4B7fg6UvuG9h9xWUHMxxlrXAc6r/HWtJp8pmjNNHU+OHkZqSX7HGptJ5BGss069i3Sj9xhOMkQhwRwhwz7+Y7RWcjkoPS33nLNy3BvexO+8uQo1oaadZwO4fd4gK1sors7u7hrCM8p/wuBndYIrvoXaEfNByFLinXFJNRbvbknhHOZUvaQHu98y6cQuaXdH0ORmFXVdtBPQsdn/7MCtZ7rM8WDMzMlLFZHBbPKSzG0RysxB6KLi7L0xwtZOd3R1vSA0eowPus04PjKpZJV4xfzX2c1SBRyZMsmpjhqu8Pr0iv8ZJYMGpxswtXp/KAXGnEGoJ7iue7fRzKuwf/zFeZoH7aLKrTCK7Zy2l0oRRHasavaE2fQ/H2Z0i3dCfuPY0ZYv3XX6iMDOz3cL0IqVEcIfaERrmAgEhcD+sI97LH4ngPhru474r764Jo1JWyY4DfeC+jt2nlqPsXZO6KO+e6yrrOgTxoLCudtSRFFu3FAGhA3h9in/6gfuuZ/6Z4N5xVFrJ7ppeoWZVx+20I2UkbuI33tNgbf1InUnIZfftW793GYLqP9FwOULu/sT3Ohp1cC/uGjY2lr33vOdyxwLWvmPTlDpO8eCtORyP7AenDC7B4vUp2h6ptfUffzW1qvvfn6SsAq/xE813hhzJ7oA7Qr7uRT8L1qOKURDc7+ncVwqf0pI1s+ciLzqVCquCVnXHncTdV6Z4t6a2Xn9AjgTZnY19EALc1yYGDogrvhWoNShc81JrqfpIKc4Q3AVoXKy5PABcynZfKautB9lRffxCCL31hL+D5lPAfRy3AqkA3EWawlex/ag1yh8bEABSZvdh2H3lb/Z9RW390HgDAO4KviOE3qj95pNjwf1pXd66Mm7CKkIIIYQQ+qtvyukZX2SyrkAAAAAASUVORK5CYII=';
 ctx.drawImage(img, 0, 0);
 var imgData = ctx.getImageData(0, 0, img.width, img.height);
 var scale = 1;
@@ -150,6 +150,7 @@ this.b=undefined;
 this.a=undefined;
 }
 
+<<<<<<< HEAD
 //reads image data, converts to hashmap
   var map =[];
   for (var y = 0; y < img.height; y++) {
@@ -161,6 +162,26 @@ this.a=undefined;
       map[y][x].b = imgData.data[(y * img.width + x) * 4 + 2]
       map[y][x].a = imgData.data[(y * img.width + x) * 4 + 3];
     }
+=======
+var map =[];
+map.x = 0
+map.y = 0
+for(var i = 0; i<img.height; i++){
+map.push([])
+}
+for(var y = 0; y<img.height; y++){
+for(var x = 0; x<img.width; x++){
+map[y].push(new pixel)
+}
+}
+
+for (var y = 0; y < img.height; y++) {
+  for (var x = 0; x < img.width; x++) {
+    map[y][x].r = imgData.data[(y * img.width + x) * 4 + 0]
+    map[y][x].g = imgData.data[(y * img.width + x) * 4 + 1]
+    map[y][x].b = imgData.data[(y * img.width + x) * 4 + 2]
+    map[y][x].a = imgData.data[(y * img.width + x) * 4 + 3];
+>>>>>>> refs/remotes/Poobaloofa/master
   }
 
 //reads map array information, adds corresponding platforms
@@ -196,14 +217,20 @@ addBackground(375,375,"https://i.imgur.com/pogZi87.jpg")
 //smiley
 addForeground(830,400,"https://cdn.discordapp.com/attachments/233670630879395841/329782430762401795/smilepart2.png")
 */
+
+ for (var i = 0; i < platforms.length; i++) {
+    if (platforms[i].rSide-xscroll > 0 && platforms[i].lSide-xscroll < c.width)
+      platforms[i].update()
+  }  
+
 setInterval(function() {
   ctx.clearRect(0, 0, c.width, c.height);
   if (player.y<c.height){
-  if (player.x>300){
+  if (player.x>0.6*c.width){
   xscroll+= movespeed
   player.x -= movespeed
   }
-  if (player.x<100){
+  if (player.x<0.2*c.width){
   xscroll-= movespeed
   player.x += movespeed
   }}

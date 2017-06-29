@@ -1,4 +1,5 @@
 var c = document.getElementById('canvas');
+c.width = 1000;
 var ctx = c.getContext('2d');
 var movespeed = 3
 var globalGravity = .2
@@ -87,7 +88,6 @@ var player = {
     for (var i = 0; i < platforms.length; i++) {
       if /* x is within x of plat */ (this.x < platforms[i].rSide-xscroll && this.x + this.size > platforms[i].lSide-xscroll) {
         if /* y is inside plat */ (this.y + this.yspeed < platforms[i].botSide && this.y + this.size + this.yspeed > platforms[i].topSide) {
-          console.log("what the actual frick")
           if (this.yspeed > 0) {
             this.y = platforms[i].topSide - this.size
             this.yspeed = 0
@@ -99,7 +99,6 @@ var player = {
         }
       }
       if /* y is inside plat y */ (this.y < platforms[i].botSide && this.y + this.size > platforms[i].topSide) {
-        console.log("heck this dude")
         if /* x will be within x of plat */ (this.x + this.xspeed < platforms[i].rSide-xscroll && this.x + this.size + this.xspeed > platforms[i].lSide-xscroll) {
           console.log("y in y and x in x")
           if (this.xspeed > 0) {
@@ -145,32 +144,26 @@ var imgData = ctx.getImageData(0, 0, img.width, img.height);
 var scale = 1;
 
 function pixel(){
-this.r=undefined
-this.g=undefined
-this.b=undefined
-this.a=undefined
+this.r=undefined;
+this.g=undefined;
+this.b=undefined;
+this.a=undefined;
 }
 
-var map =[];
-for(var i = 0; i<img.height; i++){
-map.push([])
-}
-for(var y = 0; y<img.height; y++){
-for(var x = 0; x<img.width; x++){
-map[y].push(new pixel)
-}
-}
-
-for (var y = 0; y < img.height; y++) {
-  for (var x = 0; x < img.width; x++) {
-    map[y][x].r = imgData.data[(y * img.width + x) * 4 + 0]
-    map[y][x].g = imgData.data[(y * img.width + x) * 4 + 1]
-    map[y][x].b = imgData.data[(y * img.width + x) * 4 + 2]
-    map[y][x].a = imgData.data[(y * img.width + x) * 4 + 3];
+//reads image data, converts to hashmap
+  var map =[];
+  for (var y = 0; y < img.height; y++) {
+        map.push([]);
+    for (var x = 0; x < img.width; x++) {
+      map[y].push(new pixel);
+      map[y][x].r = imgData.data[(y * img.width + x) * 4 + 0]
+      map[y][x].g = imgData.data[(y * img.width + x) * 4 + 1]
+      map[y][x].b = imgData.data[(y * img.width + x) * 4 + 2]
+      map[y][x].a = imgData.data[(y * img.width + x) * 4 + 3];
+    }
   }
-}
-console.log(map)
 
+//reads map array information, adds corresponding platforms
 for(var y = 0; y<map.length; y++){
 	for(var x = 0; x<map[y].length; x++){
      if(map[y][x].r == 0 && map[y][x].g == 0 && map[y][x].b == 0 && map[y][x].a == 255){
@@ -178,6 +171,7 @@ for(var y = 0; y<map.length; y++){
    }
   }
 }
+c.width = 500;
 
 //sprites
 function sprite(x,y,src){

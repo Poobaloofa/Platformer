@@ -1,4 +1,5 @@
 var c = document.getElementById('canvas');
+c.width = 1000;
 var ctx = c.getContext('2d');
 var movespeed = 3
 var globalGravity = .2
@@ -180,6 +181,7 @@ for(var y = 0; y<map.length; y++){
    }
   }
 }
+c.width = 500;
 
 //sprites
 function sprite(x,y,src){

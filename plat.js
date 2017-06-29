@@ -143,13 +143,14 @@ addPlat(100, 350, 200, 50)
 addPlat(50, 150, 150, 50)
 addPlat(0, -1,  2000, 1)
 addPlat(500,200,50,100)
-addPlat(550,150,50,100)
+addPlat(550,150,150,150)
 addPlat(600,100,50,100)
 addPlat(600,100,100,50)
 addPlat(700,0,500,1000)
 addPlat(-1000,0,1000,1000)
 addPlat(-100,900,900,100)
 addPlat(650,450,50,50)
+addPlat(650,0,50,100)
 
 //drawing death sign
 var deathSign = new Image

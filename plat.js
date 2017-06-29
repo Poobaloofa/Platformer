@@ -25,15 +25,15 @@ var player = {
     //movement
 
     if (this.xspeed > 0 && this.onGround()) {
-      this.xspeed -= this.xfriction
+      this.xspeed -= 2*this.xfriction
       this.xspeed = this.xspeed * 10
-      this.xspeed = Math.round(this.xspeed)
+      this.xspeed = Math.floor(this.xspeed)
       this.xspeed = this.xspeed / 10
     };
     if (this.xspeed < 0 && this.onGround()) {
       this.xspeed += this.xfriction
       this.xspeed = this.xspeed * 10
-      this.xspeed = Math.round(this.xspeed)
+      this.xspeed = Math.floor(this.xspeed)
       this.xspeed = this.xspeed / 10
     }
 
@@ -152,6 +152,8 @@ this.a=undefined
 }
 
 var map =[];
+map.x = 0
+map.y = 0
 for(var i = 0; i<img.height; i++){
 map.push([])
 }
@@ -202,14 +204,20 @@ addBackground(375,375,"https://i.imgur.com/pogZi87.jpg")
 //smiley
 addForeground(830,400,"https://cdn.discordapp.com/attachments/233670630879395841/329782430762401795/smilepart2.png")
 */
+
+ for (var i = 0; i < platforms.length; i++) {
+    if (platforms[i].rSide-xscroll > 0 && platforms[i].lSide-xscroll < c.width)
+      platforms[i].update()
+  }  
+
 setInterval(function() {
   ctx.clearRect(0, 0, c.width, c.height);
   if (player.y<c.height){
-  if (player.x>300){
+  if (player.x>0.6*c.width){
   xscroll+= movespeed
   player.x -= movespeed
   }
-  if (player.x<100){
+  if (player.x<0.2*c.width){
   xscroll-= movespeed
   player.x += movespeed
   }}

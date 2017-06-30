@@ -109,14 +109,11 @@ var player = {
             this.x = platforms[i].rSide-xscroll
             this.xspeed = 0
           }
-          //problem (RESOLVED): pressing left/right keys clips into block and triggers vertical collision
         }
       }
     }
   }
 }
-
-
 
 var platforms = []
 
@@ -127,8 +124,13 @@ function platform(startx, starty, width, height) {
   this.rSide = startx + width
   this.width = width
   this.height = height
+  this.sprite = new Image();
   this.update = function() {
-    ctx.fillRect(this.lSide-xscroll, this.topSide, this.width, this.height)
+    this.sprite.src = sprites.brick;
+    this.sprite.style.width = this.width;
+    this.sprite.style.height = this.height;
+    ctx.fillRect(this.lSide-xscroll, this.topSide, this.width, this.height);
+    ctx.drawImage(this.sprite, this.lSide-xscroll, this.topSide);
   }
 }
 
@@ -170,7 +172,6 @@ for (var y = 0; y < img.height; y++) {
     map[y][x].a = imgData.data[(y * img.width + x) * 4 + 3];
   }
 }
-console.log(map)
 
 for(var y = 0; y<map.length; y++){
 	for(var x = 0; x<map[y].length; x++){
@@ -182,6 +183,13 @@ for(var y = 0; y<map.length; y++){
 c.width = 500;
 
 //sprites
+var sprites = {
+  brick : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QYeEQ41+56XYQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABEUlEQVRIx+2WQUrDQBSGv5e8gp0EdONGvEjBnTulPY2XsqALvYDQE7i029geQE2tEPJcNIgZojMqZlH9IQQe3+RP5v2TGVlOMuOdjm+euXuouZ9khLQ3AHdRsgywkkDLpG7uCXGqI1h1Gn6QAWUFmYJEGD9VkKUgDSz+dHW+rRmH1yuKsSOVsM3BVcn8xJGrfGlWfqReTNQsricAZl5KPhtjmws2fbRf/5LF2NFeJ2vmjzWFV+/S7kDIL0sWAVbFS8tb7CJSlESy25OufhqvEgdWBt9l/38rfzVd09FOq3B2+0KxMs69epcyhdPZmmmA1aP91BsoCIZf/2iPB4LsFm1auXa75hEHjGGz2EJsL+l6Bd/dUpEbRgCnAAAAAElFTkSuQmCC'
+}
+
+
+
+
 function sprite(x,y,src){
 this.x=x
 this.y=y

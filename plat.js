@@ -88,7 +88,6 @@ var player = {
     for (var i = 0; i < platforms.length; i++) {
       if /* x is within x of plat */ (this.x < platforms[i].rSide-xscroll && this.x + this.size > platforms[i].lSide-xscroll) {
         if /* y is inside plat */ (this.y + this.yspeed < platforms[i].botSide && this.y + this.size + this.yspeed > platforms[i].topSide) {
-          console.log("what the actual frick")
           if (this.yspeed > 0) {
             this.y = platforms[i].topSide - this.size
             this.yspeed = 0
@@ -100,7 +99,6 @@ var player = {
         }
       }
       if /* y is inside plat y */ (this.y < platforms[i].botSide && this.y + this.size > platforms[i].topSide) {
-        console.log("heck this dude")
         if /* x will be within x of plat */ (this.x + this.xspeed < platforms[i].rSide-xscroll && this.x + this.size + this.xspeed > platforms[i].lSide-xscroll) {
           console.log("y in y and x in x")
           if (this.xspeed > 0) {
@@ -210,7 +208,7 @@ addForeground(830,400,"https://cdn.discordapp.com/attachments/233670630879395841
  for (var i = 0; i < platforms.length; i++) {
     if (platforms[i].rSide-xscroll > 0 && platforms[i].lSide-xscroll < c.width)
       platforms[i].update()
-  }  
+  }
 
 setInterval(function() {
   ctx.clearRect(0, 0, c.width, c.height);

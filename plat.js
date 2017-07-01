@@ -82,7 +82,7 @@ var player = {
     this.x += this.xspeed;
     document.getElementById('x').innerHTML = 'X: ' + this.x;
     document.getElementById('y').innerHTML = 'Y: ' + this.y;
-    ctx.fillRect(this.x, this.y, this.size, this.size);
+    ctx.clearRect(this.x, this.y, this.size, this.size);	//TODO ADD SPRITE FOR PLAYER
 
     //collision/platforms
     for (var i = 0; i < platforms.length; i++) {

@@ -4,8 +4,13 @@ var ctx = c.getContext('2d');
 var movespeed = 3
 var globalGravity = .2
 var xscroll = 0
+var yscroll = 0
+var lScroll = 0.2 
+var rScroll = 0.6
+var tScroll = 0.2
+var bScroll = 0.8
 var player = {
-  x: c.width / 2,
+  x: c.width / 4,
   y: c.height / 2,
   xspeed: 0,
   yspeed: 0,
@@ -17,7 +22,7 @@ var player = {
   },
   onGround: function() {
     for (var i = 0; i < platforms.length; i++) {
-      if (this.y + this.size == platforms[i].topSide) {
+      if (this.y + this.size == platforms[i].topSide-yscroll) {
         return true
       }
     }
@@ -58,7 +63,7 @@ var player = {
     if (keys[37] == true) {
       this.xspeed = -movespeed
       for (var i = 0; i < platforms.length; i++) {
-        if (this.y < platforms[i].botSide && this.y + this.size > platforms[i].topSide) {
+        if (this.y < platforms[i].botSide - yscroll && this.y + this.size > platforms[i].topSide-yscroll) {
           if (this.x - movespeed < platforms[i].rSide - xscroll && this.x + movespeed > platforms[i].rSide - xscroll) {
             this.xspeed = 0
           }
@@ -69,13 +74,33 @@ var player = {
     if (keys[39] == true) {
       this.xspeed = movespeed
       for (var i = 0; i < platforms.length; i++) {
-        if (this.y < platforms[i].botSide && this.y + this.size > platforms[i].topSide) {
+        if (this.y < platforms[i].botSide - yscroll && this.y + this.size > platforms[i].topSide-yscroll) {
           if (this.x + this.size < platforms[i].lSide - xscroll + movespeed && this.x + this.size > platforms[i].lSide - xscroll - movespeed) {
             this.xspeed = 0
           }
         }
       }
     }
+
+//scrolling
+//x scrolling
+  	 if (player.x>rScroll*c.width){
+  	  xscroll+= movespeed
+	    player.x -= movespeed
+	    }
+	   if (player.x<lScroll*c.width){
+	   xscroll-= movespeed
+	   player.x += movespeed
+	   }
+//y scrolling 
+    if (player.y<tScroll*c.height){
+  	  yscroll -= movespeed
+	    player.y += movespeed
+	    }
+	   if (player.y>bScroll*c.height){
+	   yscroll += movespeed
+	   player.y -= movespeed
+	   } 
 
     this.yspeed += this.g;
     this.y += this.yspeed;
@@ -87,18 +112,18 @@ var player = {
     //collision/platforms
     for (var i = 0; i < platforms.length; i++) {
       if /* x is within x of plat */ (this.x < platforms[i].rSide-xscroll && this.x + this.size > platforms[i].lSide-xscroll) {
-        if /* y is inside plat */ (this.y + this.yspeed < platforms[i].botSide && this.y + this.size + this.yspeed > platforms[i].topSide) {
+        if /* y is inside plat */ (this.y + this.yspeed < platforms[i].botSide - yscroll && this.y + this.size + this.yspeed > platforms[i].topSide-yscroll) {
           if (this.yspeed > 0) {
-            this.y = platforms[i].topSide - this.size
+            this.y = platforms[i].topSide - yscroll - this.size
             this.yspeed = 0
           }
           if (this.yspeed < 0) {
-            this.y = platforms[i].botSide
+            this.y = platforms[i].botSide - yscroll
             this.yspeed = 0
           }
         }
       }
-      if /* y is inside plat y */ (this.y < platforms[i].botSide && this.y + this.size > platforms[i].topSide) {
+      if /* y is inside plat y */ (this.y < platforms[i].botSide - yscroll && this.y + this.size > platforms[i].topSide-yscroll) {
         if /* x will be within x of plat */ (this.x + this.xspeed < platforms[i].rSide-xscroll && this.x + this.size + this.xspeed > platforms[i].lSide-xscroll) {
           console.log("y in y and x in x")
           if (this.xspeed > 0) {
@@ -114,7 +139,7 @@ var player = {
     }
   }
 }
-console.log('kek');
+
 var sprites = {
   brick : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QYeEQ41+56XYQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAABEUlEQVRIx+2WQUrDQBSGv5e8gp0EdONGvEjBnTulPY2XsqALvYDQE7i029geQE2tEPJcNIgZojMqZlH9IQQe3+RP5v2TGVlOMuOdjm+euXuouZ9khLQ3AHdRsgywkkDLpG7uCXGqI1h1Gn6QAWUFmYJEGD9VkKUgDSz+dHW+rRmH1yuKsSOVsM3BVcn8xJGrfGlWfqReTNQsricAZl5KPhtjmws2fbRf/5LF2NFeJ2vmjzWFV+/S7kDIL0sWAVbFS8tb7CJSlESy25OufhqvEgdWBt9l/38rfzVd09FOq3B2+0KxMs69epcyhdPZmmmA1aP91BsoCIZf/2iPB4LsFm1auXa75hEHjGGz2EJsL+l6Bd/dUpEbRgCnAAAAAElFTkSuQmCC',
   cobblestone : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QcBADUeQ24mJwAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAEY0lEQVQ4y11Vy47TShCtdr/s+JlkkpBECCGx4XP5KvZIbBAgDSDNYDmTsXv86PddFDdC9M7druo6dc6pJh8+fACAYRiWZYkxcs4BwFrLOU+SBABCCM6579+/b7fbGGOWZavVKoTAGIsxCiEIISEEAGBaa631NE3n89k5hykopQDgvQcAY8y3b9+klLvdLsYYY6SU/glmbFmWJEnKsjTGsL7vpZTr9Xq/38/zPAxDCMEYA/+vHz9+AMD79+/rusYUfy9rbdd10zSlacqstcfjcbPZKKVeXl5uP5VlSQj5+vXrPM/v3r0TQgAAIeTvRFg+Yww/WVEUWZaFEDARpVRKmaap914ppZQ6Ho+UUu89Qv5njePonMuyzDnHpmninD89Pd2OOefe+67rlFKMMUopY2y/3xNCsHZKaZIkWmvvvdY6SZIYIyGE5Xn++PjonMNqnXPTNBljhBBpmuZ5jn8vyyKEaJomz3Pn3LIswzAAgHOu7/ssy9brNSvLsm1bKaVzTgjhnPPeV1XlvUeaYox93xtjiqLgnGutl2Wx1l4uF6XU4+Pj6XTy3nPO2TiOUsokSYQQ2CwAUErFGKWU3vtpmhCR1to5F2NUSlVVxRi7u7s7nU4AcL1e53lmhJCmabBTWmvMJaXUWgMA3tH3PSGkLEskoa7r1WqFZRJCEOw8z0lVVVJKJBsTcc7rupZS/vr1axzHNE2rqirLEsWltV6tVng37hRFIYQIITDOuRAixoj6pJSWZRljbNvWWvv69essy5B4AHh5eYkxpmnqnHPOEULqup6mSUrZ933Stq1zDlWHoIwxXddZa3e7HcoqxjhN09PT0/V67bqOMVaWZVEUANB1XQjh7u4uhMAIIdfrFZVirUWal2VB4J8+ffLe53mO4jbGnM/njx8/vn37drfboVbQ/N57JoQYx1EpxTnHgMvlwjk/HA593+92u2VZ0jTF7m632xDC4XB4eHjoui7P8xCClPJ6vT48PDC0JaW0KApEiuy0beu932w2+/3eGCOl3G63ADBNE8LXWldVhX0siuJ8PrP1eq21ppTeWrZerwHg/v5+u902TUMpxbpunu+6DgDevHnDGEMX53lOKf1jq7Is/zEtEl+WZdM0f5+2bZtlWVVViAY30SSJcy6EgPMM9YVnaZoaY758+dJ1Hbr35mRU0zzPfd/j5jiOQggWQrDWYnAIQWttjNFa13VdVVXf95fL5ffv30jO8/Pz6XR69eoVAPz8+dNai8OaUlpVFYsxaq0/f/5cFMUwDGmaojGrqgKANE3TNMXUaED05jzPdV0jJkynlGI4MI/Ho9b6cDigJZdlMcZYaxljUsobdjx6fn5umubv/WEY8jxnhBAp5Wq14pxba29eo5RqrfM8z7IMVYpuJ4QQQjabDefcOYc8SimVUgkKnXOOMTfTUkqFEMYYnKv41qFicTYgtFtIlmUMp+D9/X1d17fnB0XgnEOkOB6EENbapmm89/M8o73xlUQx/wcSqAXRPoVFPAAAAABJRU5ErkJggg=='
@@ -133,8 +158,8 @@ function platform(startx, starty, width, height) {
   this.sprite.style.width = this.width;
   this.sprite.style.height = this.height;
   this.update = function() {
-    ctx.fillRect(this.lSide-xscroll, this.topSide, this.width, this.height);
-    ctx.drawImage(this.sprite, this.lSide-xscroll, this.topSide);
+    ctx.fillRect(this.lSide-xscroll, this.topSide-yscroll, this.width, this.height);
+    ctx.drawImage(this.sprite, this.lSide-xscroll, this.topSide-yscroll);
   }
 }
 
@@ -236,15 +261,6 @@ background.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL
 setInterval(function() {
   ctx.clearRect(0, 0, c.width, c.height);
   ctx.drawImage(background, 0,0);
-  if (player.y<c.height){
-  if (player.x>0.6*c.width){
-  xscroll+= movespeed
-  player.x -= movespeed
-  }
-  if (player.x<0.2*c.width){
-  xscroll-= movespeed
-  player.x += movespeed
-  }}
   for(var i = 0; i<backgroundSprites.length;i++){
   ctx.drawImage(backgroundSprites[i].img,backgroundSprites[i].x-xscroll,backgroundSprites[i].y)
   }
@@ -256,7 +272,7 @@ setInterval(function() {
   for(var i = 0; i<foregroundSprites.length;i++){
   ctx.drawImage(foregroundSprites[i].img,foregroundSprites[i].x-xscroll,foregroundSprites[i].y)}
 
-  light(player.x, player.y, 200);
+  //light(player.x, player.y, 200);
 }, 10);
 
 

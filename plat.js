@@ -1,11 +1,12 @@
 var c = document.getElementById('canvas');
 c.width = 1000;
 var ctx = c.getContext('2d');
+console.log('kek');
 var movespeed = 3
 var globalGravity = .2
 var xscroll = 0
 var yscroll = 0
-var lScroll = 0.2 
+var lScroll = 0.2
 var rScroll = 0.6
 var tScroll = 0.2
 var bScroll = 0.8
@@ -92,7 +93,7 @@ var player = {
 	   xscroll-= movespeed
 	   player.x += movespeed
 	   }
-//y scrolling 
+//y scrolling
     if (player.y<tScroll*c.height){
   	  yscroll -= movespeed
 	    player.y += movespeed
@@ -100,7 +101,7 @@ var player = {
 	   if (player.y>bScroll*c.height){
 	   yscroll += movespeed
 	   player.y -= movespeed
-	   } 
+	   }
 
     this.yspeed += this.g;
     this.y += this.yspeed;

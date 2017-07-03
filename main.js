@@ -1,5 +1,5 @@
 var globalGravity = 0.2 // 0.2 pixels/second/second
-var movespeed = 10 // 3 pixels/second
+var movespeed = 3 // 3 pixels/second
 var player = new Player
 window.onload= function(){
   mapToArray();

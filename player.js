@@ -12,7 +12,7 @@ function Player(){
   };
   this.onGround = function() {
     for (var i = 0; i < platforms.length; i++) {
-      if (this.y + this.size == platforms[i].topSide) {
+      if (this.y + this.size == platforms[i].topSide && this.x < platforms[i].rSide && this.x + this.size > platforms[i].lSide) {
         return true;
       };
     };

@@ -8,7 +8,7 @@ window.onload= function(){
   setInterval(function(){
     checkInputs();
     pUpdate(player);
-    camera.update();
+    //camera.update();
     draw();
     console.log(player.x + " , " + player.y)
   }, 10);

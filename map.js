@@ -25,7 +25,7 @@ function mapToArray(){
   c.height = mapsrc.height
   ctx.drawImage(mapsrc,0,0);
   var imgData = ctx.getImageData(0, 0, mapsrc.width, mapsrc.height);
-  var scale = 10;
+  var scale = 25;
 
   var map =[];
   map.x = 0

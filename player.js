@@ -6,6 +6,7 @@ function Player(){
   this.size = 20;
   this.xfriction = .2;
   this.movespeed = 3;
+  this.g = globalGravity;
   this.jump = function() {
     this.yspeed = -6;
   };

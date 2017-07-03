@@ -2,7 +2,7 @@
 function natForces(obj){
   //gravity
   if(obj.onGround() == false){
-  obj.yspeed += globalGravity
+  obj.yspeed += obj.g
 }
   //friction
   if (obj.xspeed > 0 && obj.onGround()) {
@@ -51,11 +51,11 @@ function colliding(obj){
   }
 }
 
-function update(obj){
+function pUpdate(obj){
   natForces(obj);
   colliding(obj);
   obj.x += obj.xspeed
   obj.y += obj.yspeed
 }
 
-//ANYTHING using physics needs: x,y,xspeed,yspeed,xfriction
+//ANYTHING using physics needs: x,y,xspeed,yspeed,xfriction,g

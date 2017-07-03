@@ -8,17 +8,17 @@ var camera = {
   update: function(){
     //x scrolling
     if(player.x>this.x+c.width*this.rbound){
-      this.x += player.x-(c.width*this.rbound);
+      this.x = player.x-(c.width*this.rbound);
     };
     if(player.x<this.x+c.width*this.lbound){
-      this.x += player.x-(c.width*this.lbound);
+      this.x = player.x-(c.width*this.lbound);
     };
     //y scrolling
     if(player.y>this.y+c.height*this.bbound){
-      this.y += player.y-(c.height*this.bbound);
+      this.y = player.y-(c.height*this.bbound);
     };
     if(player.y<this.y+c.height*this.tbound){
-      this.y += player.y-(c.height*this.tbound);
+      this.y = player.y-(c.height*this.tbound);
     };
   },
 };

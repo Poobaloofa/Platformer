@@ -14,7 +14,7 @@ function natForces(obj){
   if (obj.xspeed < 0 && obj.onGround()) {
     obj.xspeed += obj.xfriction;
     obj.xspeed = obj.xspeed * 10;
-    obj.xspeed = Math.floor(obj.xspeed);
+    obj.xspeed = Math.ceil(obj.xspeed);
     obj.xspeed = obj.xspeed / 10;
   };
 }

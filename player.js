@@ -16,6 +16,7 @@ function Player(){
         return true;
       };
     };
+    return false;
   };
   this.update = function(){
 

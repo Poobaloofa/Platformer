@@ -1,5 +1,3 @@
-c.width=500;
-c.height=500;
 var camera = {
   x: 0,
   y: 0,

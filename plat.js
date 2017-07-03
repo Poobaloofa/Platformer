@@ -52,7 +52,7 @@ var player = {
       this.x = c.width - this.size
       this.xspeed = -this.xspeed
     }
-
+// TODO INPUTS
     if (keys[38] == true && this.yspeed < 0) {
       this.g = globalGravity / 2;
     }

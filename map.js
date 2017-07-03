@@ -23,29 +23,29 @@ function platform(startx, starty, width, height) {
 function mapToArray(){
   c.width = mapsrc.width
   c.height = mapsrc.height
-  drawImage(mapsrc,0,0);
-  var imgData = ctx.getImageData(0, 0, img.width, img.height);
-  var scale = 1;
+  ctx.drawImage(mapsrc,0,0);
+  var imgData = ctx.getImageData(0, 0, mapsrc.width, mapsrc.height);
+  var scale = 10;
 
   var map =[];
   map.x = 0
   map.y = 0
 
-  for (var y = 0; y < img.height; y++) {
+  for (var y = 0; y < mapsrc.height; y++) {
     map.push([]);
-    for (var x = 0; x < img.width; x++) {
+    for (var x = 0; x < mapsrc.width; x++) {
       map[y].push(new pixel);
-      map[y][x].r = imgData.data[(y * img.width + x) * 4 + 0];
-      map[y][x].g = imgData.data[(y * img.width + x) * 4 + 1];
-      map[y][x].b = imgData.data[(y * img.width + x) * 4 + 2];
-      map[y][x].a = imgData.data[(y * img.width + x) * 4 + 3];
+      map[y][x].r = imgData.data[(y * mapsrc.width + x) * 4 + 0];
+      map[y][x].g = imgData.data[(y * mapsrc.width + x) * 4 + 1];
+      map[y][x].b = imgData.data[(y * mapsrc.width + x) * 4 + 2];
+      map[y][x].a = imgData.data[(y * mapsrc.width + x) * 4 + 3];
     }
   }
 
   for(var y = 0; y<map.length; y++){
   	for(var x = 0; x<map[y].length; x++){
        if(map[y][x].r == 0 && map[y][x].g == 0 && map[y][x].b == 0 && map[y][x].a == 255){
-     	platofrms.push(new platform((x/map.length)*c.height*scale,(y/map.length)*c.height*scale,c.height*scale/map.length,c.height*scale/map.length));
+     	platforms.push(new platform(map.x+x*scale,map.y+y*scale,scale,scale));
      }
     }
   }

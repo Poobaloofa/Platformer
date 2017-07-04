@@ -16,3 +16,13 @@ function light(x3,y3,r,scale){
   ctx.fillRect(0,0,c.width,y2-r);
   ctx.fillRect(0,y2+r,c.width,c.height-(y2+r));
 }
+
+var lit = true;
+document.getElementById('button').addEventListener('click',toggleLighting);
+function toggleLighting(){
+  if (lit) {
+    lit = false;
+  } else {
+    lit = true;
+  }
+}

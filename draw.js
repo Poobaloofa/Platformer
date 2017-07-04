@@ -1,3 +1,4 @@
+
 function draw(){
   ctx.fillRect(0,0,c.width,c.height);
   for (var i = 0; i < platforms.length; i++) {
@@ -8,7 +9,9 @@ function draw(){
 }
   ctx.drawImage(playersprite, player.x - camera.x, player.y - camera.y)
   ctx.drawImage(sassage,23530 - camera.x,330-camera.y)
-  light(player.x + player.size/2 - camera.x,player.y + player.size/2 - camera.y,300,20);
+  if (lit) {
+    light(player.x + player.size/2 - camera.x,player.y + player.size/2 - camera.y,300,20);
+  }
 }
 
 /*function resizeCanvas() {

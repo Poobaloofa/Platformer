@@ -1,6 +1,6 @@
 function draw(){
-  //ctx.drawImage(background, 0, 0)
-  ctx.fillRect(0,0,c.wdith,c.height);
+  ctx.drawImage(background, 0, 0)
+  //ctx.fillRect(0,0,c.wdith,c.height);
   for (var i = 0; i < platforms.length; i++) {
     if (platforms[i].rSide-camera.x > 0 && platforms[i].lSide-camera.x < c.width && platforms[i].botSide-camera.y > 0 && platforms[i].topSide-camera.x < c.height){
     ctx.clearRect(platforms[i].lSide - camera.x, platforms[i].topSide - camera.y, platforms[i].width, platforms[i].height);

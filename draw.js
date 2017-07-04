@@ -8,5 +8,5 @@ function draw(){
 }
   ctx.drawImage(playersprite, player.x - camera.x, player.y - camera.y)
   ctx.drawImage(sassage,23530 - camera.x,330-camera.y)
-  light(player.x + player.size/2 - camera.x,player.y + player.size/2 - camera.y,300,20);
+  light(player.x + player.size/2 - camera.x,player.y + player.size/2 - camera.y,c.width-100,20);
 }

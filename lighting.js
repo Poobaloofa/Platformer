@@ -1,5 +1,7 @@
-function light(x2,y2,r){
-  var scale = 10;
+function light(x3,y3,r){
+  var scale = 20;
+  var x2 = Math.floor(x3)
+  var y2 = Math.floor(y3)
 	for(var x = x2-r; x<=x2+r; x+=scale){
   	for(var y = y2-r; y<=y2+r; y+=scale){
       var opacity = (Math.sqrt((x-x2)*(x-x2) + (y-y2)*(y-y2)))/(r);

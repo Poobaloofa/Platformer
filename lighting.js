@@ -1,5 +1,4 @@
-function light(x3,y3,r){
-  var scale = 20;
+function light(x3,y3,r,scale){
   var x2 = Math.floor(x3);
   var y2 = Math.floor(y3);
 	for(var x = x2-r; x<=x2+r; x+=scale){

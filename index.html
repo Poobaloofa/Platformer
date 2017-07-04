@@ -7,14 +7,17 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-<canvas width='500' height='500' style='border: 1px solid black' id='canvas'></canvas>
-<h1>Platformer: by Chibbo and Jül</h1>
-<h2>Use arrow keys to move. If you die, reload the page to revive yourself.</h2>
-<h2 id='x'>X:</h2>
-<h2 id='y'>Y:</h2>
-<button type="button" id="button" style="color: black;">Toggle Lighting</button>
+    <div id="game">
+      <canvas style='border: 1px solid black' id='canvas'></canvas>
+    </div>
+    <h1>Platformer: by Chibbo and Jül</h1>
+    <h2>Use arrow keys to move. If you die, reload the page to revive yourself.</h2>
+    <h2 id='x'>X:</h2>
+    <h2 id='y'>Y:</h2>
+    <button type="button" id="button" style="color: black;">Toggle Lighting</button>
 
-</body>
+  </body>
+  <script src="stats.min.js" charset="utf-8"></script>
   <script src="resources.js" charset="utf-8"></script>
   <script src="map.js" charset="utf-8"></script>
   <script src="player.js" charset="utf-8"></script>

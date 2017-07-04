@@ -10,7 +10,7 @@ window.onload= function(){
     pUpdate(player);
     camera.update();
     draw();
-    document.getElementById('x').innerHTML = 'X: ' + this.x;
-    document.getElementById('y').innerHTML = 'Y: ' + this.y;
+    document.getElementById('x').innerHTML = 'X: ' + player.x;
+    document.getElementById('y').innerHTML = 'Y: ' + player.y;
   }, 10);
 }

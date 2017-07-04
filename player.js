@@ -1,6 +1,6 @@
 function Player(){
-  this.x = c.width / 4;
-  this.y = c.height / 2;
+  this.x = 0;
+  this.y = 0;
   this.xspeed = 0;
   this.yspeed = 0;
   this.size = 20;

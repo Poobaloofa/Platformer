@@ -1,9 +1,3 @@
-function pixel(){
-this.r=undefined
-this.g=undefined
-this.b=undefined
-this.a=undefined
-}
 
 var platforms = [];
 
@@ -28,25 +22,36 @@ function mapToArray(){
   var scale = 25;
 
   var map =[];
-  map.x = 0
-  map.y = 0
 
   for (var y = 0; y < mapsrc.height; y++) {
     map.push([]);
     for (var x = 0; x < mapsrc.width; x++) {
-      map[y].push(new pixel);
-      map[y][x].r = imgData.data[(y * mapsrc.width + x) * 4 + 0];
-      map[y][x].g = imgData.data[(y * mapsrc.width + x) * 4 + 1];
-      map[y][x].b = imgData.data[(y * mapsrc.width + x) * 4 + 2];
-      map[y][x].a = imgData.data[(y * mapsrc.width + x) * 4 + 3];
+      map[y].push(toHex(imgData.data[(y * mapsrc.width + x) * 4 + 0])+
+                  toHex(imgData.data[(y * mapsrc.width + x) * 4 + 1])+
+                  toHex(imgData.data[(y * mapsrc.width + x) * 4 + 2]));
     }
   }
 
   for(var y = 0; y<map.length; y++){
   	for(var x = 0; x<map[y].length; x++){
-       if(map[y][x].r == 0 && map[y][x].g == 0 && map[y][x].b == 0 && map[y][x].a == 255){
-     	platforms.push(new platform(map.x+x*scale,map.y+y*scale,scale,scale));
-     }
+      switch (map[y][x]) {
+        case '000000':
+          platforms.push(new platform(x*scale,y*scale,scale,scale));
+          break;
+
+        case '0000ff':
+          player.x = x*scale;
+          player.y = x*scale;
+          break;
+
+        default:break;
+      }
     }
   }
+}
+
+function toHex(n){
+  if(n.toString(16).length<2)
+    return '0'+ n.toString(16);
+  return n.toString(16);
 }

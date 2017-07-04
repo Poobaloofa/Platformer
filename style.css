@@ -13,7 +13,10 @@
 }
 
 *{
-  background-color: #111111;
   color: white;
   font-family: sans-serif;
+}
+
+body{
+  background-color: #111111;
 }

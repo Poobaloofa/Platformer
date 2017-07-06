@@ -13,7 +13,7 @@ function draw(){
   ctx.drawImage(sassage,950 - camera.x,420-camera.y);
   if (lit) {
     addLight(player.x-camera.x, player.y-camera.y,300);
-    //addLight(950 - camera.x,420-camera.y, 300);
+    addLight(950 - camera.x,420-camera.y, 300);
     light();
   }
 }

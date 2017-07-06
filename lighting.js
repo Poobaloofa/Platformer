@@ -8,11 +8,13 @@ for (var y = 0; y < 720; y+=scale) {
 }
 
 function addLight(x2,y2,r){
-  for(var y = 0; y < lightmap.length; y++){
-    for (var x = 0; x < lightmap[0].length; x++) {
+  for(var y = Math.floor((y2-r)/scale); y < (y2+r)/scale; y++){
+    for (var x = Math.floor((x2-r)/scale); x < (x2+r)/scale; x++) {
       var y1 = y*scale;
       var x1 = x*scale;
-      lightmap[y][x] = (Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)))/(r);
+      if(y>0 && y<lightmap.length && x>0 && x<lightmap[0].length && (Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)))/(r)<1){
+      lightmap[y][x] += (Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)))/(r)-1;
+    }
     }
   }
 }
@@ -24,6 +26,11 @@ function light(){
       ctx.fillStyle = "rgba(0,0,0,"+lightmap[y][x]+")";
       ctx.fillRect(x*scale,y*scale,scale,scale);
       ctx.closePath();
+    }
+  }
+  for(var i = 0; i<lightmap.length; i++){
+    for(var j = 0; j<lightmap[0].length; j++){
+      lightmap[i][j] = 1
     }
   }
 }

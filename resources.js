@@ -14,7 +14,7 @@ var testmap_3 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwCAIAAACxN
 var testmap_4 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP4AAAAUCAIAAAAiKxfiAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAB3RJTUUH4QcEECMksgIZAAAAATJJREFUaN7tmtsOgzAIhovx/V+5u1iyEHqwB9Tqvu+qm6Uw+kuoU2KMAeD/2EgBIH0ApA+A9AGQPgDSB0D6AEgfYEVEBOnD30k8hBBjFBFzdfP1AXCX6EWk/mqCubqPeeL1h7ESoPOmbXvzebjNxoWZPON6nbTryL91vWuRHfnOMKObC2xL0x5duXolrsuEHm8Nligcnqp7bWVsW6q+hBBLvs+uH8PuBgwbuwhw3NOuhPueMG/Y7F5RlhrW4U7XK36vZbO3XNrO6pnpoPceblz/MObL6kWq+1Lw+qPeLDP2iftUNa8m/XcX45+gK3lrmTnTHaS22Xp/KP26F5/n+uasjYze0UPPfDkjiclHN9kF0xj4SwtqBdJcap958bk2e5A9PMJCrfC47Kjvakul6Lm/6ANcj9A/IAzxJwAAAABJRU5ErkJggg==";
 
 var mapsrc = new Image();
-mapsrc.src = testmap_3;
+mapsrc.src = testmap_4;
 
 var background = new Image();
 background.src = bgsrc;

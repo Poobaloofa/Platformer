@@ -10,9 +10,11 @@ function draw(){
   }
 
   ctx.drawImage(playersprite, player.x - camera.x, player.y - camera.y);
-  ctx.drawImage(sassage,23530 - camera.x,330-camera.y);
+  ctx.drawImage(sassage,950 - camera.x,420-camera.y);
   if (lit) {
-    light(player.x + player.size/2 - camera.x,player.y + player.size/2 - camera.y,300,20);
+    addLight(player.x-camera.x, player.y-camera.y,300);
+    //addLight(950 - camera.x,420-camera.y, 300);
+    light();
   }
 }
 

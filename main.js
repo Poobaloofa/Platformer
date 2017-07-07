@@ -22,9 +22,15 @@ window.onload= function(){
     pUpdate(player);
     camera.update();
     draw();
-    document.getElementById('x').innerHTML = "X: " + Math.floor(player.x);
-    document.getElementById('y').innerHTML = "Y: " + Math.floor(-player.y);
+    document.getElementById('x').innerHTML = "X: " + Math.floor(player.x/scale);
+    document.getElementById('y').innerHTML = "Y: " + Math.floor(mapsrc.height+4-player.y/scale);
 
   	stats.end();
   }, 1000/fps);
+}
+
+//DEBUG COMMAND LIST
+function tp(x,y){
+  player.x = x*scale;
+  player.y = (mapsrc.height+4-y)*scale;
 }

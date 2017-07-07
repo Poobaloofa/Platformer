@@ -31,7 +31,6 @@ function mapToArray(){
                   toHex(imgData.data[(y * mapsrc.width + x) * 4 + 2]));
     }
   }
-
   for(var y = 0; y<map.length; y++){
   	for(var x = 0; x<map[y].length; x++){
       switch (map[y][x]) {
@@ -41,7 +40,7 @@ function mapToArray(){
 
         case '0000ff':
           player.x = x*scale;
-          player.y = x*scale;
+          player.y = y*scale;
           break;
 
         default:break;

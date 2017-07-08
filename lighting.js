@@ -1,4 +1,5 @@
 var scale = 20;
+var lights = []; //list of lights
 var lightmap = []; //0 is clear, 1 is opaque
 for (var y = 0; y < 720; y+=scale) {
   lightmap.push([]);
@@ -35,6 +36,11 @@ function light(){
   }
 }
 
+function lightsrc(x,y,r){
+  this.x = x;
+  this.y = y;
+  this.r = r;
+}
 
 /*
 var opacity = (Math.sqrt((x-x2)*(x-x2) + (y-y2)*(y-y2)))/(r);

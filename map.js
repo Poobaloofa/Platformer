@@ -43,6 +43,10 @@ function mapToArray(){
           player.y = y*scale;
           break;
 
+        case 'ffff00':
+          lights.push(new lightsrc(x*scale,y*scale));
+          break;
+
         default:break;
       }
     }

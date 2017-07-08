@@ -20,6 +20,11 @@ window.onload= function(){
 
     checkInputs();
     pUpdate(player);
+    for (var i = 0; i < enemies.length; i++) {
+      enemies[i].update();
+      pUpdate(enemies[i]);
+    }
+
     camera.update();
     draw();
     document.getElementById('x').innerHTML = "X: " + Math.floor(player.x/scale);

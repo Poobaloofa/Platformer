@@ -34,16 +34,20 @@ function mapToArray(){
   for(var y = 0; y<map.length; y++){
   	for(var x = 0; x<map[y].length; x++){
       switch (map[y][x]) {
-        case '000000':
+        case '000000': //black: platform
           platforms.push(new platform(x*scale,y*scale,scale,scale));
           break;
 
-        case '0000ff':
+        case '0000ff': //blue: spawnpoint
           player.x = x*scale;
           player.y = y*scale;
           break;
 
-        case 'ffff00':
+        case 'ff0000': //red: enemy
+          enemies.push(new enemy(x*scale, y*scale, 20, .5, .2));
+          break;
+
+        case 'ffff00': //yellow: light source
           lights.push(new lightsrc(x*scale,y*scale));
           break;
 

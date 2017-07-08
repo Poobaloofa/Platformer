@@ -18,6 +18,7 @@ function natForces(obj){
     obj.xspeed = obj.xspeed / 10;
   };
 }
+
 function colliding(obj){
   for (var i = 0; i < platforms.length; i++) {
     if /* x is within x of plat */ (obj.x < platforms[i].rSide && obj.x + obj.size > platforms[i].lSide) {
@@ -54,8 +55,8 @@ function colliding(obj){
 function pUpdate(obj){
   natForces(obj);
   colliding(obj);
-  obj.x += obj.xspeed
-  obj.y += obj.yspeed
+  obj.x += obj.xspeed;
+  obj.y += obj.yspeed;
 }
 
 //ANYTHING using physics needs: x,y,xspeed,yspeed,xfriction,g

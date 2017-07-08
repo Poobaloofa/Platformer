@@ -2,6 +2,7 @@
 function draw(){
   ctx.beginPath();
   //ctx.fillStyle = '#A4F8F8';
+  ctx.fillStyle = 'black';
   ctx.fillRect(0,0,c.width,c.height);
   ctx.closePath();
 
@@ -14,6 +15,15 @@ function draw(){
   }
 
   ctx.drawImage(playersprite, player.x - camera.x, player.y - camera.y);
+
+  ctx.beginPath();
+  ctx.fillStyle = 'red';
+  for (var i = 0; i < enemies.length; i++) {
+    ctx.fillRect(enemies[i].x-camera.x, enemies[i].y-camera.y, enemies[i].size, enemies[i].size);
+  }
+  ctx.closePath();
+
+
   ctx.drawImage(sassage,950 - camera.x,420-camera.y);
   if (lit) {
     //addLight(player.x-camera.x, player.y-camera.y,300);

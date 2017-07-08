@@ -18,7 +18,4 @@ function Player(){
     };
     return false;
   };
-  this.update = function(){
-
-  };
 }

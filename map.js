@@ -14,6 +14,12 @@ function platform(startx, starty, width, height) {
 //  this.sprite.style.height = this.height; TODO resize texture
 }
 
+var spawnPoint = {
+  x: 0,
+  y: 0,
+}
+
+
 function mapToArray(){
   c.width = mapsrc.width
   c.height = mapsrc.height
@@ -39,7 +45,10 @@ function mapToArray(){
           break;
 
         case '0000ff': //blue: spawnpoint
+          spawnPoint.x = x*scale;
           player.x = x*scale;
+
+          spawnPoint.y = y*scale;
           player.y = y*scale;
           break;
 
@@ -49,6 +58,10 @@ function mapToArray(){
 
         case 'ffff00': //yellow: light source
           lights.push(new lightsrc(x*scale,y*scale));
+          break;
+
+        case 'ffa500': //orange: coins
+          pickUps.push(new pickUp(x*scale,y*scale,25,25,coinAnimFrames))
           break;
 
         default:break;

@@ -20,6 +20,14 @@ window.onload= function(){
 
     checkInputs();
     pUpdate(player);
+    if (Math.floor(mapsrc.height+4-player.y/scale)<-4) {
+      player.x = spawnPoint.x;
+      player.y = spawnPoint.y;
+      player.xspeed = 0;
+      player.yspeed = 0;
+    }
+
+
     for (var i = 0; i < enemies.length; i++) {
       enemies[i].update();
       pUpdate(enemies[i]);
@@ -36,6 +44,8 @@ window.onload= function(){
 
 //DEBUG COMMAND LIST
 function tp(x,y){
+  player.xspeed = 0;
+  player.yspeed = 0;
   player.x = x*scale;
   player.y = (mapsrc.height+4-y)*scale;
 }

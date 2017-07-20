@@ -1,6 +1,6 @@
 function Player(){
-  this.x = undefined;
-  this.y = undefined;
+  this.x = spawnPoint.x;
+  this.y = spawnPoint.y;
   this.xspeed = 0;
   this.yspeed = 0;
   this.size = 20;

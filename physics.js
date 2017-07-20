@@ -60,3 +60,7 @@ function pUpdate(obj){
 }
 
 //ANYTHING using physics needs: x,y,xspeed,yspeed,xfriction,g
+
+function objColl(obj1,obj2){
+
+}

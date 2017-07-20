@@ -1,3 +1,5 @@
+var animCount = 0;
+
 
 function draw(){
   ctx.beginPath();
@@ -23,6 +25,14 @@ function draw(){
   }
   ctx.closePath();
 
+    for (var i = 0; i < pickUps.length; i++) {
+      if (animCount%6 == 0) {
+        pickUps[i].update(true);
+      } else {
+        pickUps[i].update(false);
+      }
+    }
+  animCount++;
 
   ctx.drawImage(sassage,950 - camera.x,420-camera.y);
   if (lit) {
